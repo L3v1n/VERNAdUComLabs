@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.brgrBtn{
+    background-color: #6a85c0;
+    color: #fff;
+    float: right;
+    width: 80px;
+    height: 80px;
+    border: #fff;
+}
+
+#rightMenu{
+    background-color: #616161;
+    color: #fff;
+    width: 25%;
+}
+
+.navMain{
+    background-color: #6a85c0;
+    height: 80px;
+}
+
+.navMain .AdULabsLogo{
+    margin: 5px 20px 0 20px ;
+    width: 120px;
+    height: 70px;
+    float: left;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #6a85c0;
+    color: #fff;
+}
+
+.navMain li {
+    float: left;
+}
+
+.navMain li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    height: 80px;
+  }
+
+  .navMain li a:hover {
+    display: block;
+    color: #202020;
+    background-color: #f3e491;
+    text-align: center;
+  }
