@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>AdU Labs</title>
-        <link rel="stylesheet" href="/CSS/AdULabs.css">
-        <script type="text/javascript" src="/JavaScript/AdULabs.js"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    </head>
-    <body>
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
-            <button onclick="brgr_close()" class="close-btn w3-bar-item w3-button w3-large">&times;</button>
-            <a href="#" class="w3-bar-item w3-button">Computer Lab 1</a>
-            <a href="#" class="w3-bar-item w3-button">Computer Lab 2</a>
-            <a href="#" class="w3-bar-item w3-button">Computer Lab 3</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indoor Navigation System</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+</head>
+<body>
+    <div id="map"></div>
+    <div id="sidebar">
+        <div id="user-location">
+            <p>User Location: <span id="current-location">ST Building</span> <button id="update-location">&#10148;</button></p>
         </div>
-
-        <button class="brgrBtn w3-xlarge" onclick="brgr_open()">&#9776;</button>
-
-        <div class="navMain">
-            <div class="logo">
-                <img src="/Images/AdULabs.png" class="AdULabsLogo">
-            </div>
-            <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="#">user</a></li>
-            </ul>
-        </div>
-    </body>
+        <input type="text" id="search-bar" placeholder="Search Laboratories...">
+        <ul id="laboratories-list">
+            <!-- Labs will be dynamically added here -->
+        </ul>
+    </div>
+    <div id="directions-box" class="hidden">
+        <p id="directions"></p>
+        <button id="go-button">Go</button>
+        <button id="back-button">Back</button>
+    </div>
+    <script src="/Scripts/script.js"></script>
+</body>
 </html>
