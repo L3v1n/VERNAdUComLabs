@@ -81,6 +81,15 @@ body {
     display: none;
 }
 
+.button-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 button {
     margin: 5px;
     padding: 10px;
