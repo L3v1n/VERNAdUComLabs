@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    flex-direction: row-reverse; /* Move sidebar to the right */
+    position: relative;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 25px; /* Rounded corners */
+    overflow-y: auto;
+    transition: all 0.3s ease; /* Smooth transition */
+    position: relative;
+    z-index: 1; /* Ensure it stays above the main content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Emphasized shadow */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.5rem; /* Larger font size */
+    font-weight: 700; /* Bold */
+    margin-bottom: 20px; /* Spacing below heading */
+}
+
+.select-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.select-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light grey background */
+    font-size: 1rem; /* Larger font size */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling for Safari */
+    -moz-appearance: none; /* Remove default styling for Firefox */
+    outline: none; /* Remove outline */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Same shadow as zoom controls */
+    display: flex;
+    align-items: center;
+    padding-right: 30px; /* Make room for the icon */
+}
+
+.select-container::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaa; /* Icon color */
+}
+
+#search {
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light grey background */
+    font-size: 1rem; /* Larger font size */
+    display: flex;
+    align-items: center;
+}
+
+#search::placeholder {
+    color: #aaa; /* Placeholder color */
+}
+
+#search input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background: none;
+}
+
+#search button {
+    background: none;
+    border: none;
+    color: #aaa; /* Search icon color */
+    cursor: pointer;
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    box-shadow: none; /* Remove shadow */
+}
+
+#lab-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lab-list li {
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Rounded corners */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Light shadow */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+#lab-list li:hover {
+    background-color: #f9f9f9; /* Light grey background on hover */
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 0;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent overflow */
+    cursor: grab; /* Show grab cursor */
+    user-select: none; /* Prevent text selection */
+    -webkit-user-drag: none; /* Disable image drag in WebKit browsers */
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure the image scales correctly */
+    user-select: none; /* Prevent the image from being highlighted */
+    pointer-events: none; /* Disable pointer events */
+    -webkit-user-drag: none; /* Disable image drag in WebKit browsers */
+}
+
+.zoom-controls {
+    position: absolute;
+    bottom: 10px; /* Add margin from the bottom */
+    left: 10px; /* Add margin from the left */
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Emphasized shadow same as sidebar */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden;
+    z-index: 1000; /* Ensure controls are above other elements */
+}
+
+.zoom-controls button {
+    background-color: #fff;
+    border: none;
+    padding: 5px; /* Smaller padding */
+    cursor: pointer;
+    font-size: 16px; /* Smaller font size */
+    width: 40px; /* Smaller width */
+    height: 40px; /* Smaller height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.zoom-controls button:hover {
+    background-color: #f0f0f0;
+}
+
+.zoom-controls svg {
+    width: 20px;
+    height: 20px;
+    fill: #000; /* Flat icon color */
+}
+
+.floor-select-container {
+    position: absolute;
+    bottom: 10px; /* Place at the bottom */
+    right: 320px; /* Adjust to be next to the sidebar */
+    width: 200px;
+    z-index: 1000; /* Ensure it stays above other elements */
+    display: flex;
+    align-items: center;
+    border-radius: 25px; /* Match the select menu border radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Same shadow as zoom controls */
+}
+
+#floor-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light grey background */
+    font-size: 1rem; /* Larger font size */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling for Safari */
+    -moz-appearance: none; /* Remove default styling for Firefox */
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove shadow */
+    display: flex;
+    align-items: center;
+    padding-right: 30px; /* Make room for the icon */
+}
+
+.floor-select-container::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaa; /* Icon color */
+}

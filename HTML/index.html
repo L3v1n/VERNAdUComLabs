@@ -3,27 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indoor Navigation System</title>
-    <link rel="stylesheet" href="/CSS/styles.css">
+    <title>VERN AdU ComLabs</title>
+    <link rel="stylesheet" href="/CSS/main.css">
 </head>
 <body>
-    <div id="map"></div>
-    <div id="sidebar">
-        <div id="user-location">
-            <p>User Location: <span id="current-location">ST Building</span> <button id="update-location">&#10148;</button></p>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <h2>Current Location</h2>
+            <div class="select-container">
+                <select id="building-select">
+                    <option value="SV Building">SV Building</option>
+                </select>
+            </div>
+            <div id="search">
+                <input type="text" placeholder="Search ComLabs">
+                <button>
+                    <!-- Flat search icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+            <ul id="lab-list">
+                <li>Computer Laboratory 1 (CL1)<br><small>Ground Floor - ST Building</small></li>
+                <li>Computer Laboratory 2 (CL2)<br><small>Ground Floor - ST Building</small></li>
+                <li>Computer Laboratory 3 (CL3)<br><small>Ground Floor - ST Building</small></li>
+                <li>Computer Laboratory 4 (CL4)<br><small>2nd Floor - ST Building</small></li>
+                <li>Computer Laboratory 5 (CL5)<br><small>Ground Floor - ST Building</small></li>
+            </ul>
         </div>
-        <input type="text" id="search-bar" placeholder="Search Laboratories...">
-        <ul id="laboratories-list">
-            <!-- Labs will be dynamically added here -->
-        </ul>
-    </div>
-    <div id="directions-box" class="hidden">
-        <p id="directions"></p>
-        <div class="button-container">
-            <button id="go-button">Go</button>
-            <button id="back-button">Back</button>
+        <div class="main-content">
+            <div class="map-container" oncontextmenu="return false;">
+                <img src="/Images/ST_GF.svg" alt="ST Building Map" class="map" id="map">
+                <div class="zoom-controls">
+                    <button id="zoom-in">
+                        <!-- Flat zoom-in icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                    <button id="zoom-out">
+                        <!-- Flat zoom-out icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="floor-select-container">
+            <select id="floor-select" class="floor-select">
+                <option value="ground-floor">Ground Floor</option>
+                <option value="second-floor">Second Floor</option>
+            </select>
         </div>
     </div>
-    <script src="/Scripts/script.js"></script>
+    <script src="/Scripts/main.js"></script>
 </body>
 </html>
