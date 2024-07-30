@@ -161,8 +161,8 @@ body {
     height: 100%;
     object-fit: contain; /* Ensure the image scales correctly */
     user-select: none; /* Prevent the image from being highlighted */
-    pointer-events: none; /* Disable pointer events */
     -webkit-user-drag: none; /* Disable image drag in WebKit browsers */
+    transform-origin: center center; /* Set transform origin to center */
 }
 
 .zoom-controls {

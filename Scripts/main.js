@@ -1,90 +1,124 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('search');
-    const labListItems = document.querySelectorAll('#lab-list li');
-    const mapContainer = document.querySelector('.map-container');
-    const map = document.querySelector('.map');
+document.addEventListener('DOMContentLoaded', (event) => {
+    const map = document.getElementById('map');
     const zoomInButton = document.getElementById('zoom-in');
     const zoomOutButton = document.getElementById('zoom-out');
+
     let scale = 1;
-    const scaleStep = 0.25;  // Increased zoom step
-    const maxScale = 5;  // Increased maximum scale
-    const minScale = 0.25;  // Decreased minimum scale
-    let isDragging = false;
-    let startX, startY, translateX = 0, translateY = 0;
-    let lastX, lastY;
-
-    // Prevent default drag behavior
-    mapContainer.addEventListener('dragstart', (e) => e.preventDefault());
-    map.addEventListener('dragstart', (e) => e.preventDefault());
-
-    searchInput.addEventListener('input', () => {
-        const filter = searchInput.value.toLowerCase();
-        labListItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            if (text.includes(filter)) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
+    let translateX = 0;
+    let translateY = 0;
 
     zoomInButton.addEventListener('click', () => {
-        if (scale < maxScale) {
-            scale += scaleStep;
-            map.style.transition = 'transform 0.1s ease-out';  // Only transition on zoom
-            map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        }
+        scale += 0.1;
+        updateTransform();
     });
 
     zoomOutButton.addEventListener('click', () => {
-        if (scale > minScale) {
-            scale -= scaleStep;
-            map.style.transition = 'transform 0.1s ease-out';  // Only transition on zoom
-            map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        }
+        scale = Math.max(1, scale - 0.1);
+        updateTransform();
     });
 
-    const onDrag = (e) => {
-        if (isDragging) {
-            e.preventDefault();
-            lastX = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
-            lastY = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
-            translateX = lastX;
-            translateY = lastY;
-            map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        }
-    };
+    function updateTransform() {
+        map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
 
-    mapContainer.addEventListener('mousedown', (e) => {
+    // Draggable map functionality
+    let isDragging = false;
+    let startX, startY;
+
+    map.addEventListener('mousedown', (event) => {
         isDragging = true;
-        startX = e.clientX - translateX;
-        startY = e.clientY - translateY;
-        mapContainer.style.cursor = 'grabbing';
-        lastX = translateX;
-        lastY = translateY;
-        document.addEventListener('mousemove', onDrag);
+        startX = event.clientX - translateX;
+        startY = event.clientY - translateY;
+        map.style.cursor = 'grabbing';
     });
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
-        mapContainer.style.cursor = 'grab';
-        document.removeEventListener('mousemove', onDrag);
+        map.style.cursor = 'grab';
     });
 
-    mapContainer.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        startX = e.touches[0].clientX - translateX;
-        startY = e.touches[0].clientY - translateY;
-        mapContainer.style.cursor = 'grabbing';
-        lastX = translateX;
-        lastY = translateY;
-        document.addEventListener('touchmove', onDrag);
+    document.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+            translateX = event.clientX - startX;
+            translateY = event.clientY - startY;
+            updateTransform();
+        }
     });
 
-    document.addEventListener('touchend', () => {
+    map.addEventListener('mouseleave', () => {
         isDragging = false;
-        mapContainer.style.cursor = 'grab';
-        document.removeEventListener('touchmove', onDrag);
+        map.style.cursor = 'grab';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const map = document.getElementById('map');
+    const floorSelect = document.getElementById('floor-select');
+
+    floorSelect.addEventListener('change', (event) => {
+        const selectedFloor = event.target.value;
+        if (selectedFloor === 'ground-floor') {
+            map.src = '/Images/ST_GF.svg';
+        } else if (selectedFloor === 'second-floor') {
+            map.src = '/Images/ST_2F.svg';
+        }
+        resetTransformations();
+    });
+
+    const zoomInButton = document.getElementById('zoom-in');
+    const zoomOutButton = document.getElementById('zoom-out');
+
+    let scale = 1;
+    let translateX = 0;
+    let translateY = 0;
+
+    zoomInButton.addEventListener('click', () => {
+        scale += 0.1;
+        updateTransform();
+    });
+
+    zoomOutButton.addEventListener('click', () => {
+        scale = Math.max(1, scale - 0.1);
+        updateTransform();
+    });
+
+    function updateTransform() {
+        map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    function resetTransformations() {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateTransform();
+    }
+
+    // Draggable map functionality
+    let isDragging = false;
+    let startX, startY;
+
+    map.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        startX = event.clientX - translateX;
+        startY = event.clientY - translateY;
+        map.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        map.style.cursor = 'grab';
+    });
+
+    document.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+            translateX = event.clientX - startX;
+            translateY = event.clientY - startY;
+            updateTransform();
+        }
+    });
+
+    map.addEventListener('mouseleave', () => {
+        isDragging = false;
+        map.style.cursor = 'grab';
     });
 });
