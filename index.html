@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERN AdU ComLabs</title>
-    <link rel="stylesheet" href="/CSS/main.css">
+    <!-- Link to the main stylesheet -->
+    <link rel="stylesheet" href="CSS/main.css">
 </head>
 <body>
+    <!-- Main container for the layout -->
     <div class="container">
+        <!-- Sidebar for current location and search functionality -->
         <div class="sidebar" id="sidebar">
             <h2>Current Location</h2>
+            <!-- Building select dropdown -->
             <div class="select-container">
                 <select id="building-select">
                     <option value="SV Building">SV Building</option>
                 </select>
             </div>
+            <!-- Search input for filtering labs -->
             <div id="search">
                 <input type="text" placeholder="Search ComLabs">
                 <button>
@@ -25,17 +30,16 @@
                     </svg>
                 </button>
             </div>
-            <ul id="lab-list">
-                <li>Computer Laboratory 1 (CL1)<br><small>Ground Floor - ST Building</small></li>
-                <li>Computer Laboratory 2 (CL2)<br><small>Ground Floor - ST Building</small></li>
-                <li>Computer Laboratory 3 (CL3)<br><small>Ground Floor - ST Building</small></li>
-                <li>Computer Laboratory 4 (CL4)<br><small>2nd Floor - ST Building</small></li>
-                <li>Computer Laboratory 5 (CL5)<br><small>Ground Floor - ST Building</small></li>
-            </ul>
+            <!-- List of computer laboratories -->
+            <ul id="lab-list"></ul>
         </div>
+        <!-- Main content area for the map -->
         <div class="main-content">
+            <!-- Container for the map, disabling right-click context menu -->
             <div class="map-container" oncontextmenu="return false;">
-                <img src="/Images/ST_GF.svg" alt="ST Building Map" class="map" id="map">
+                <!-- Map image -->
+                <img src="Images/ST_GF.svg" alt="ST Building Map" class="map" id="map">
+                <!-- Zoom controls -->
                 <div class="zoom-controls">
                     <button id="zoom-in">
                         <!-- Flat zoom-in icon -->
@@ -53,6 +57,7 @@
                 </div>
             </div>
         </div>
+        <!-- Floor select dropdown -->
         <div class="floor-select-container">
             <select id="floor-select" class="floor-select">
                 <option value="ground-floor">Ground Floor</option>
@@ -60,6 +65,13 @@
             </select>
         </div>
     </div>
-    <script src="/Scripts/main.js"></script>
+
+    <!-- Firebase CDN Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore-compat.js"></script>
+    <!-- Link to the database JavaScript file -->
+    <script src="Scripts/database.js"></script>
+    <!-- Link to the main JavaScript file -->
+    <script src="Scripts/main.js"></script>
 </body>
 </html>
