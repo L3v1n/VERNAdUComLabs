@@ -1,9 +1,11 @@
+/* Universal box-sizing rule */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Basic styling for html and body */
 html, body {
     height: 100%;
     width: 100%;
@@ -11,6 +13,7 @@ html, body {
     overflow: hidden; /* Prevent scrolling */
 }
 
+/* Styling for the body element */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -18,6 +21,7 @@ body {
     width: 100vw;
 }
 
+/* Main container styling */
 .container {
     display: flex;
     flex-grow: 1;
@@ -26,6 +30,7 @@ body {
     position: relative;
 }
 
+/* Sidebar styling */
 .sidebar {
     width: 300px;
     background-color: #ffffff; /* White background */
@@ -38,19 +43,21 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Emphasized shadow with matching rounded corners */
 }
 
+/* Sidebar heading styling */
 .sidebar h2 {
     margin-top: 0;
     font-size: 1.5rem; /* Larger font size */
-    font-weight: 700; /* Bold */
     margin-bottom: 20px; /* Spacing below heading */
 }
 
+/* Select container styling */
 .select-container {
     position: relative;
     width: 100%;
     margin-bottom: 20px;
 }
 
+/* Dropdown select styling */
 .select-container select {
     width: 100%;
     padding: 10px;
@@ -68,6 +75,7 @@ body {
     padding-right: 30px; /* Make room for the icon */
 }
 
+/* Custom dropdown icon */
 .select-container::after {
     content: '▼';
     position: absolute;
@@ -78,6 +86,7 @@ body {
     color: #aaa; /* Icon color */
 }
 
+/* Search bar styling */
 #search {
     width: 100%;
     padding: 10px 20px;
@@ -91,10 +100,12 @@ body {
     box-shadow: none; /* Remove shadow */
 }
 
+/* Placeholder color */
 #search::placeholder {
     color: #aaa; /* Placeholder color */
 }
 
+/* Search input styling */
 #search input {
     border: none;
     outline: none;
@@ -102,6 +113,7 @@ body {
     background: none;
 }
 
+/* Search button styling */
 #search button {
     background: none;
     border: none;
@@ -112,13 +124,15 @@ body {
     box-shadow: none; /* Remove shadow */
 }
 
+/* List styling for labs */
 #lab-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-#lab-list li {
+/* Style for lab items */
+.lab-item {
     margin-bottom: 15px;
     padding: 15px 20px;
     border: 1px solid #ddd;
@@ -129,10 +143,23 @@ body {
     cursor: pointer; /* Pointer cursor on hover */
 }
 
-#lab-list li:hover {
+/* Style for lab name */
+.lab-name {
+    font-size: 1.1rem;
+}
+
+/* Style for lab details */
+.lab-details {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Lab item hover effect */
+.lab-item:hover {
     background-color: #f9f9f9; /* Light grey background on hover */
 }
 
+/* Main content area styling */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -144,6 +171,7 @@ body {
     overflow: hidden;
 }
 
+/* Map container styling */
 .map-container {
     position: absolute;
     top: 0;
@@ -156,6 +184,7 @@ body {
     -webkit-user-drag: none; /* Disable image drag in WebKit browsers */
 }
 
+/* Map image styling */
 .map {
     width: 100%;
     height: 100%;
@@ -165,6 +194,7 @@ body {
     transform-origin: center center; /* Set transform origin to center */
 }
 
+/* Zoom controls container styling */
 .zoom-controls {
     position: absolute;
     bottom: 10px; /* Add margin from the bottom */
@@ -179,6 +209,7 @@ body {
     z-index: 1000; /* Ensure controls are above other elements */
 }
 
+/* Zoom control button styling */
 .zoom-controls button {
     background-color: #fff;
     border: none;
@@ -193,16 +224,19 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Zoom control button hover effect */
 .zoom-controls button:hover {
     background-color: #f0f0f0;
 }
 
+/* Zoom control icon styling */
 .zoom-controls svg {
     width: 20px;
     height: 20px;
     fill: #000; /* Flat icon color */
 }
 
+/* Floor select container styling */
 .floor-select-container {
     position: absolute;
     bottom: 10px; /* Place at the bottom */
@@ -215,6 +249,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Same shadow as zoom controls */
 }
 
+/* Floor select dropdown styling */
 #floor-select {
     width: 100%;
     padding: 10px;
@@ -232,6 +267,7 @@ body {
     padding-right: 30px; /* Make room for the icon */
 }
 
+/* Custom dropdown icon for floor select */
 .floor-select-container::after {
     content: '▼';
     position: absolute;

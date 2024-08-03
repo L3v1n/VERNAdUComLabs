@@ -1,5 +1,4 @@
-// Your Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase configuration object
 const firebaseConfig = {
     apiKey: "AIzaSyDvI3RjE7Qac6MnuuVj6-fVtZbYFTBCgpw",
     authDomain: "vern-adu-comlabs.firebaseapp.com",
@@ -10,9 +9,9 @@ const firebaseConfig = {
     measurementId: "G-NH00V61C5T"
 };
 
-// Initialize Firebase
+// Initialize Firebase app
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const db = firebase.firestore();  // Get Firestore database instance
 
 // List of computer laboratories to be stored in Firestore
 const initialLabs = [
@@ -29,38 +28,30 @@ const initialLabs = [
 
 // Function to initialize labs in Firestore
 async function initializeLabs() {
-    const labsCollection = db.collection('labs');
-    const snapshot = await labsCollection.get();
+    const labsCollection = db.collection('labs');  // Reference to labs collection
+    const snapshot = await labsCollection.get();  // Get all documents from labs collection
 
+    // Check if labs collection is empty
     if (snapshot.empty) {
         initialLabs.forEach(async (lab) => {
-            await labsCollection.add(lab);
+            await labsCollection.add(lab);  // Add each lab to the collection
         });
         console.log('Labs initialized in Firestore');
     } else {
         console.log('Labs already exist in Firestore');
     }
 
-    fetchLabs();
+    fetchLabs();  // Fetch and display labs
 }
 
-// Fetch Labs from Firestore
+// Function to fetch labs from Firestore
 async function fetchLabs() {
-    const snapshot = await db.collection('labs').orderBy('labNumber').get();
-    const labs = snapshot.docs.map(doc => doc.data());
-    console.log('Fetched labs:', labs);
-
-    // Display labs in your HTML
-    const labList = document.getElementById('lab-list');
-    labList.innerHTML = '';
-    labs.forEach(lab => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${lab.name} (${lab.floor}) - ${lab.building}`;
-        labList.appendChild(listItem);
-    });
+    const snapshot = await db.collection('labs').orderBy('labNumber').get();  // Get labs ordered by lab number
+    const labs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));  // Map documents to lab objects
+    displayLabs(labs);  // Display labs in the HTML
 }
 
-// Initialize labs and fetch them on page load
+// Initialize labs on page load
 document.addEventListener('DOMContentLoaded', () => {
-    initializeLabs();
+    initializeLabs();  // Initialize labs when the DOM content is loaded
 });
