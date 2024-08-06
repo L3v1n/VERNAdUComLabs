@@ -1,273 +1,68 @@
-/* Universal box-sizing rule */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Basic styling for html and body */
 html, body {
     height: 100%;
     width: 100%;
-    margin: 0;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
 }
 
-/* Styling for the body element */
 body {
     font-family: Arial, sans-serif;
     display: flex;
     height: 100vh;
     width: 100vw;
+    background-color: #f8f7f7;
 }
 
-/* Main container styling */
 .container {
     display: flex;
     flex-grow: 1;
     width: 100%;
-    flex-direction: row-reverse; /* Move sidebar to the right */
+    flex-direction: row-reverse;
     position: relative;
 }
 
-/* Sidebar styling */
 .sidebar {
     width: 300px;
-    background-color: #ffffff; /* White background */
+    background-color: #ffffff;
     padding: 20px;
-    border-radius: 25px 0 0 25px; /* Rounded corners on the left and bottom left sides */
+    border-radius: 25px 0 0 25px;
     overflow-y: auto;
-    transition: all 0.3s ease; /* Smooth transition */
+    transition: all 0.3s ease;
     position: relative;
-    z-index: 1; /* Ensure it stays above the main content */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Emphasized shadow with matching rounded corners */
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Sidebar heading styling */
 .sidebar h2 {
     margin-top: 0;
-    font-size: 1.5rem; /* Larger font size */
-    margin-bottom: 20px; /* Spacing below heading */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
-/* Select container styling */
 .select-container {
-    position: relative;
     width: 100%;
     margin-bottom: 20px;
-}
-
-/* Dropdown select styling */
-.select-container select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 25px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light grey background */
-    font-size: 1rem; /* Larger font size */
-    appearance: none; /* Remove default styling */
-    -webkit-appearance: none; /* Remove default styling for Safari */
-    -moz-appearance: none; /* Remove default styling for Firefox */
-    outline: none; /* Remove outline */
-    box-shadow: none; /* Remove shadow */
-    display: flex;
-    align-items: center;
-    padding-right: 30px; /* Make room for the icon */
-}
-
-/* Custom dropdown icon */
-.select-container::after {
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #aaa; /* Icon color */
-}
-
-/* Search bar styling */
-#search {
-    width: 100%;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 25px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light grey background */
-    font-size: 1rem; /* Larger font size */
-    display: flex;
-    align-items: center;
-    box-shadow: none; /* Remove shadow */
-}
-
-/* Placeholder color */
-#search::placeholder {
-    color: #aaa; /* Placeholder color */
-}
-
-/* Search input styling */
-#search input {
-    border: none;
-    outline: none;
-    flex-grow: 1;
-    background: none;
-}
-
-/* Search button styling */
-#search button {
-    background: none;
-    border: none;
-    color: #aaa; /* Search icon color */
-    cursor: pointer;
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    box-shadow: none; /* Remove shadow */
-}
-
-/* List styling for labs */
-#lab-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-/* Style for lab items */
-.lab-item {
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px; /* Rounded corners */
-    background-color: #ffffff; /* White background */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Light shadow */
-    transition: background-color 0.3s ease; /* Smooth background transition */
-    cursor: pointer; /* Pointer cursor on hover */
-}
-
-/* Style for lab name */
-.lab-name {
-    font-size: 1.1rem;
-}
-
-/* Style for lab details */
-.lab-details {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* Lab item hover effect */
-.lab-item:hover {
-    background-color: #f9f9f9; /* Light grey background on hover */
-}
-
-/* Main content area styling */
-.main-content {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
     position: relative;
-    padding: 0;
-    overflow: hidden;
 }
 
-/* Map container styling */
-.map-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden; /* Prevent overflow */
-    cursor: grab; /* Show grab cursor */
-    user-select: none; /* Prevent text selection */
-    -webkit-user-drag: none; /* Disable image drag in WebKit browsers */
-}
-
-/* Map image styling */
-.map {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensure the image scales correctly */
-    user-select: none; /* Prevent the image from being highlighted */
-    -webkit-user-drag: none; /* Disable image drag in WebKit browsers */
-    transform-origin: center center; /* Set transform origin to center */
-}
-
-/* Zoom controls container styling */
-.zoom-controls {
-    position: absolute;
-    bottom: 10px; /* Add margin from the bottom */
-    left: 10px; /* Add margin from the left */
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Emphasized shadow same as sidebar */
-    border-radius: 10px; /* Rounded corners */
-    overflow: hidden;
-    z-index: 1000; /* Ensure controls are above other elements */
-}
-
-/* Zoom control button styling */
-.zoom-controls button {
-    background-color: #fff;
-    border: none;
-    padding: 5px; /* Smaller padding */
-    cursor: pointer;
-    font-size: 16px; /* Smaller font size */
-    width: 40px; /* Smaller width */
-    height: 40px; /* Smaller height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
-}
-
-/* Zoom control button hover effect */
-.zoom-controls button:hover {
-    background-color: #f0f0f0;
-}
-
-/* Zoom control icon styling */
-.zoom-controls svg {
-    width: 20px;
-    height: 20px;
-    fill: #000; /* Flat icon color */
-}
-
-/* Floor select container styling */
-.floor-select-container {
-    position: absolute;
-    bottom: 10px; /* Place at the bottom */
-    right: 320px; /* Adjust to be next to the sidebar */
-    width: 200px;
-    z-index: 1000; /* Ensure it stays above other elements */
-    display: flex;
-    align-items: center;
-    border-radius: 25px; /* Match the select menu border radius */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2); /* Same shadow as zoom controls */
-}
-
-/* Floor select dropdown styling */
+.select-container select,
 #floor-select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 25px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light grey background */
-    font-size: 1rem; /* Larger font size */
-    appearance: none; /* Remove default styling */
-    -webkit-appearance: none; /* Remove default styling for Safari */
-    -moz-appearance: none; /* Remove default styling for Firefox */
-    outline: none; /* Remove outline */
-    box-shadow: none; /* Remove shadow */
-    display: flex;
-    align-items: center;
-    padding-right: 30px; /* Make room for the icon */
+    border-radius: 25px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    appearance: none;
+    outline: none;
 }
 
-/* Custom dropdown icon for floor select */
+.select-container::after,
 .floor-select-container::after {
     content: '▼';
     position: absolute;
@@ -275,5 +70,212 @@ body {
     right: 10px;
     transform: translateY(-50%);
     pointer-events: none;
-    color: #aaa; /* Icon color */
+    color: #aaa;
+}
+
+#search {
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+#search input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background: none;
+}
+
+#search button {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+#lab-list {
+    list-style-type: none;
+}
+
+.lab-item {
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.lab-item:hover {
+    background-color: #f9f9f9;
+}
+
+.lab-name {
+    font-size: 1.1rem;
+}
+
+.lab-details {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f7f7;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+}
+
+.map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 1000px;
+    height: 800px;
+    margin: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    z-index: 1;
+}
+
+.zoom-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.zoom-controls button {
+    background-color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.zoom-controls button:hover {
+    background-color: #f0f0f0;
+}
+
+.zoom-controls svg {
+    width: 20px;
+    height: 20px;
+    fill: #000;
+}
+
+.floor-select-container {
+    position: fixed;
+    bottom: 10px;
+    right: 320px;
+    width: 200px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.map-marker {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+.map-container {
+    position: relative;
+    width: 1000px;
+    height: 800px;
+    overflow: hidden;
+}
+
+.grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.grid-line {
+    stroke: lightgray;
+    stroke-width: 1;
+}
+
+.map-marker, .path-line {
+    position: absolute;
+    transform-origin: top left;
+}
+
+.directions-overlay {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay-close {
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+.overlay-close:hover {
+    background-color: #e0e0e0;
+}
+
+.hidden {
+    display: none;
 }

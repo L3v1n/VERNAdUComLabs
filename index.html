@@ -4,74 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERN AdU ComLabs</title>
-    <!-- Link to the main stylesheet -->
     <link rel="stylesheet" href="CSS/main.css">
 </head>
 <body>
-    <!-- Main container for the layout -->
     <div class="container">
-        <!-- Sidebar for current location and search functionality -->
         <div class="sidebar" id="sidebar">
             <h2>Current Location</h2>
-            <!-- Building select dropdown -->
             <div class="select-container">
                 <select id="building-select">
                     <option value="SV Building">SV Building</option>
                 </select>
             </div>
-            <!-- Search input for filtering labs -->
             <div id="search">
                 <input type="text" placeholder="Search ComLabs">
                 <button>
-                    <!-- Flat search icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="21" y="21" x2="16.65" y2="16.65"></line>
                     </svg>
                 </button>
             </div>
-            <!-- List of computer laboratories -->
             <ul id="lab-list"></ul>
         </div>
-        <!-- Main content area for the map -->
         <div class="main-content">
-            <!-- Container for the map, disabling right-click context menu -->
-            <div class="map-container" oncontextmenu="return false;">
-                <!-- Map image -->
-                <img src="Images/ST_GF.svg" alt="ST Building Map" class="map" id="map">
-                <!-- Zoom controls -->
-                <div class="zoom-controls">
-                    <button id="zoom-in">
-                        <!-- Flat zoom-in icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                    </button>
-                    <button id="zoom-out">
-                        <!-- Flat zoom-out icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                    </button>
+            <div class="map-container" id="map-container" oncontextmenu="return false;">
+                <svg class="grid-layer" id="grid-layer"></svg>
+            </div>
+            <div class="zoom-controls">
+                <button id="zoom-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+                <button id="zoom-out" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="floor-select-container">
+                <select id="floor-select" class="floor-select">
+                    <option value="ground-floor">Ground Floor</option>
+                    <option value="second-floor">Second Floor</option>
+                </select>
+            </div>
+            <div id="directions-overlay" class="directions-overlay hidden">
+                <div class="overlay-content">
+                    <button id="overlay-close" class="overlay-close">&times;</button>
+                    <h2 id="lab-name">Computer Laboratory 1 (CL1)</h2>
                 </div>
             </div>
         </div>
-        <!-- Floor select dropdown -->
-        <div class="floor-select-container">
-            <select id="floor-select" class="floor-select">
-                <option value="ground-floor">Ground Floor</option>
-                <option value="second-floor">Second Floor</option>
-            </select>
-        </div>
     </div>
-
-    <!-- Firebase CDN Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore-compat.js"></script>
-    <!-- Link to the database JavaScript file -->
-    <script src="Scripts/database.js"></script>
-    <!-- Link to the main JavaScript file -->
-    <script src="Scripts/main.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
+    <script type="module" src="Scripts/firebaseConfig.js"></script>
+    <script type="module" src="Scripts/database.js"></script>
+    <script type="module" src="Scripts/paths.js"></script>
+    <script type="module" src="Scripts/labs.js"></script>
+    <script type="module" src="Scripts/main.js"></script>
 </body>
 </html>
